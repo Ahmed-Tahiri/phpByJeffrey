@@ -3,6 +3,7 @@ require_once('Validator.php');
 $heading = 'Create Note';
 $config = require('config.php');
 $db = new Database($config['database'], 'root', 'Ahmed1682&9');
+$successMsg = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $errors = [];
@@ -15,6 +16,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ':note' => htmlspecialchars($_POST['note']),
             ':user_id' => 2
         ]);
+        $_POST['note'] = "";
+        $successMsg = "Note Created Successfully.";
     }
 }
 require_once "views/notes/create.note.view.php";

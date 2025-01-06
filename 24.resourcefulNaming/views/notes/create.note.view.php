@@ -8,6 +8,7 @@ require("views/partials/navbar.php");
             <label class="text text-light fs-4" for="note">Enter Your Notes Description</label>
             <div class="d-flex flex-column">
                 <span class="text-danger"><?= $errors['invalid Input'] ?? '' ?></span>
+                <span class="text-success"><?= $successMsg ?></span>
             </div>
 
             <textarea id="note" name="note" class="w-100 rounded mt-2 py-2 px-3" style="resize: none; height:200px; overflow-y:scroll;" aria-label="With textarea" placeholder="Enter Your Note Here....." value="12"><?= $_POST['note'] ?? "" ?></textarea>
