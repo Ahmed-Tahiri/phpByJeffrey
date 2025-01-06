@@ -1,16 +1,13 @@
 <?php
-
+require_once('Validator.php');
 $heading = 'Create Note';
 $config = require('config.php');
 $db = new Database($config['database'], 'root', 'Ahmed1682&9');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $errors = [];
-    if (strlen($_POST['note']) === 0 || $_POST['note'] === null) {
-        $errors['isNull'] = "Please Enter Data in the field.";
-    }
-    if (strlen($_POST['note']) > 300) {
-        $errors['limit Exceeded'] = "Text Limit Increased.";
+    if (!Validator::inputValidator(htmlspecialchars($_POST['note']), 1, 300)) {
+        $errors['invalid Input'] = "Your Input Data should contain minimum 1 and maximum 300 characters.";
     }
     if (empty($errors)) {
         $query = 'INSERT INTO notes(note, user_id) VALUES(:note, :user_id);';
