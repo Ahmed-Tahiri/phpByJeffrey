@@ -21,7 +21,7 @@ class Database
             $this->statement->execute($params);
             return $this;
         } catch (PDOException $err) {
-            die('Error While Connecting Database: ' . $err->getMessage());
+            die('Error While Executing Query: ' . $err->getMessage());
         }
     }
     public function findOrFail()
